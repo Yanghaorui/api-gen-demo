@@ -1,0 +1,156 @@
+openapi: 3.0.1
+info:
+  title: member-core-service
+  description: member-core-service API Doc
+  contact:
+    name: "Steven.Xu, Ted.Zhang, Wei.Luo, Haorui.Yang"
+    url: https://teams.microsoft.com/l/channel/19%3Ae87433228610441d8d35c6a232eda09b%40thread.tacv2/Squad%20Membership?groupId=01d5d1d1-66b4-477a-b220-518b99f3b7be&tenantId=1d063515-6cad-4195-9486-ea65df456faa
+    email: CDT_CRM@lego.com
+  version: "1.0"
+  x-audience: external-partner
+  x-skip-infrastructure: true
+  x-application-id: APP-02152
+servers:
+- url: http://member-core-service-membership.dev.httpcntesting.thelegogroup.cn:443
+  description: Generated server url
+security:
+- Authorization: []
+tags:
+- name: member-card
+  description: the member-card API
+- name: member-join-channel
+  description: the member-join-channel API
+paths:
+  /api/v1/member-card/member-id/{memberId}:
+    get:
+      tags:
+      - member-card
+      summary: retrieving member card by member id
+      operationId: getMemberCardByMemberId
+      parameters:
+      - name: memberId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: user-agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: correlation-id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberCardDTO'
+      security:
+      - Authorization:
+        - basic-read
+  /api/v1/member-card/card-number/{cardNumber}:
+    get:
+      tags:
+      - member-card
+      summary: retrieving member card by card number
+      operationId: getMemberCardByCardNumber
+      parameters:
+      - name: cardNumber
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: user-agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: correlation-id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberCardDTO'
+      security:
+      - Authorization:
+        - basic-read
+  /api/v1/join-channel/{memberId}:
+    get:
+      tags:
+      - member-join-channel
+      summary: retrieving member join channel by member id
+      operationId: get
+      parameters:
+      - name: memberId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: correlation-id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberJoinChannelDTO'
+      security:
+      - Authorization:
+        - pii-read
+components:
+  schemas:
+    MemberCardDTO:
+      type: object
+      properties:
+        memberId:
+          type: string
+        cardNumber:
+          type: string
+    MemberJoinChannelDTO:
+      type: object
+      properties:
+        memberDetailId:
+          type: integer
+          format: int64
+        channelId:
+          type: integer
+          format: int64
+        orgId:
+          type: integer
+          format: int64
+        joinTime:
+          type: string
+          format: date-time
+        platform:
+          type: string
+          enum:
+          - EC
+          - WMP
+          - TMALL
+          - DOUYIN
+          - MEITUAN
+  securitySchemes:
+    Authorization:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://sts.windows.net/1d063515-6cad-4195-9486-ea65df456faa/
+          scopes:
+            basic-read: Read basic information
+            pii-read: Read personally insensitive information
+            write: write

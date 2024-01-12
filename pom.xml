@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>indi.haorui</groupId>
+    <artifactId>api-gen-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>api-gen-demo</name>
+    <description>api-gen-demo</description>
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>open-api-v3.yaml</inputSpec>
+                            <!-- 自定义模版，继承的spring模版，增加了@Fengin, @PreAuthorize，API文件后缀改成了RpcService, 生成出来的接口用的spring包，比如ResponseEntity -->
+                            <generatorName>membership-codegen</generatorName>
+                            <!--                            <output>${project.basedir}</output>-->
+                            <apiPackage>indi.haorui.api.service</apiPackage>
+                            <modelPackage>indi.haorui.api.dto</modelPackage>
+                            <!-- 生成一些额外的文件，比如README.md, .openapi-generator-ignore，pom.xml（会覆盖原本的）等， -->
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <apiNameSuffix>RpcService</apiNameSuffix>
+                            <!--                            <generateAliasAsModel>false</generateAliasAsModel>-->
+                            <!--                            <skipValidateSpec>true</skipValidateSpec> &lt;!&ndash; 是否跳过open-api-v3.json的校验&ndash;&gt;-->
+                            <configOptions>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <dateLibrary>java8</dateLibrary>
+                                <interfaceOnly>true</interfaceOnly>
+                                <skipDefaultInterface>true</skipDefaultInterface> <!-- 不生成接口的default方法 -->
+                                <useSpringBoot3>true</useSpringBoot3><!-- 使用jakarta包校验，默认javax -->
+                                <useTags>true</useTags> <!-- 是否通过tag 生成API 类名 -->
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.lego</groupId>
+                        <artifactId>membership-codegen-openapi-generator</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
