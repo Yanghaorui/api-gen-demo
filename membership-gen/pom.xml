@@ -74,7 +74,6 @@
                                 <skipDefaultInterface>true</skipDefaultInterface> <!-- 不生成接口的default方法 -->
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <sourceFolder>src/main/java</sourceFolder>
-                                <skipDefaultInterface>true</skipDefaultInterface> <!-- 不生成接口的default方法 -->
                                 <useSpringBoot3>true</useSpringBoot3><!-- 使用jakarta包校验，默认javax -->
                                 <useTags>true</useTags> <!-- 是否通过tag 生成API 类名 -->
                             </configOptions>

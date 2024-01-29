@@ -11,8 +11,8 @@
 	<groupId>indi.haorui</groupId>
 	<artifactId>template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>customized</name>
-	<description>customized</description>
+	<name>template</name>
+	<description>the use of template</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -62,9 +62,10 @@
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<configOptions>
 								<library>spring-boot</library>
+								<interfaceOnly>true</interfaceOnly>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<sourceFolder>src/main/java</sourceFolder>
-								<skipDefaultInterface>false</skipDefaultInterface> <!-- 不生成接口的default方法 -->
+								<skipDefaultInterface>true</skipDefaultInterface> <!-- 不生成接口的default方法 -->
 								<useSpringBoot3>true</useSpringBoot3><!-- 使用jakarta包校验，默认javax -->
 								<useTags>true</useTags> <!-- 是否通过tag 生成API 类名 -->
 							</configOptions>

@@ -56,12 +56,13 @@
                             <inputSpec>api-docs.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <output>${project.basedir}</output>
-                            <apiPackage>indi.haorui.api.service</apiPackage>
-                            <modelPackage>indi.haorui.api.dto</modelPackage>
+                            <apiPackage>indi.haorui.standard.api.service</apiPackage>
+                            <modelPackage>indi.haorui.standard.api.dto</modelPackage>
                             <!-- 生成一些额外的文件，比如README.md，pom.xml（会覆盖原本的）等， -->
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
                                 <library>spring-boot</library>
+                                <interfaceOnly>true</interfaceOnly>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <skipDefaultInterface>false</skipDefaultInterface> <!-- 生成接口的default方法? -->
