@@ -11,38 +11,41 @@ info:
   x-skip-infrastructure: true
   x-application-id: APP-02152
 servers:
-- url: http://member-core-service-membership.dev.httpcntesting.thelegogroup.cn:443
-  description: Generated server url
+  - url: http://member-core-service-membership.dev.httpcntesting.thelegogroup.cn:443
+    description: Generated server url
 security:
-- Authorization: []
+  - Authorization:
+      - basic-read
+      - pii-read
+      - write
 tags:
-- name: member-card
-  description: the member-card API
-- name: member-join-channel
-  description: the member-join-channel API
+  - name: member-card
+    description: the member-card API
+  - name: member-join-channel
+    description: the member-join-channel API
 paths:
   /api/v1/member-card/member-id/{memberId}:
     get:
       tags:
-      - member-card
+        - member-card
       summary: retrieving member card by member id
       operationId: getMemberCardByMemberId
       parameters:
-      - name: memberId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: user-agent
-        in: header
-        required: false
-        schema:
-          type: string
-      - name: correlation-id
-        in: header
-        required: false
-        schema:
-          type: string
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: user-agent
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: correlation-id
+          in: header
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -51,30 +54,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/MemberCardDTO'
       security:
-      - Authorization:
-        - basic-read
+        - Authorization:
+            - basic-read
   /api/v1/member-card/card-number/{cardNumber}:
     get:
       tags:
-      - member-card
+        - member-card
       summary: retrieving member card by card number
       operationId: getMemberCardByCardNumber
       parameters:
-      - name: cardNumber
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: user-agent
-        in: header
-        required: false
-        schema:
-          type: string
-      - name: correlation-id
-        in: header
-        required: false
-        schema:
-          type: string
+        - name: cardNumber
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: user-agent
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: correlation-id
+          in: header
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -83,25 +86,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/MemberCardDTO'
       security:
-      - Authorization:
-        - basic-read
+        - Authorization:
+            - basic-read
   /api/v1/join-channel/{memberId}:
     get:
       tags:
-      - member-join-channel
+        - member-join-channel
       summary: retrieving member join channel by member id
       operationId: get
       parameters:
-      - name: memberId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: correlation-id
-        in: header
-        required: false
-        schema:
-          type: string
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: correlation-id
+          in: header
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -110,8 +113,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/MemberJoinChannelDTO'
       security:
-      - Authorization:
-        - pii-read
+        - Authorization:
+            - pii-read
 components:
   schemas:
     MemberCardDTO:
@@ -139,11 +142,11 @@ components:
         platform:
           type: string
           enum:
-          - EC
-          - WMP
-          - TMALL
-          - DOUYIN
-          - MEITUAN
+            - EC
+            - WMP
+            - TMALL
+            - DOUYIN
+            - MEITUAN
   securitySchemes:
     Authorization:
       type: oauth2

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>indi.haorui</groupId>
-	<artifactId>customized</artifactId>
+	<artifactId>template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>customized</name>
 	<description>customized</description>
@@ -56,8 +56,8 @@
 							<inputSpec>api-docs.yaml</inputSpec>
 							<templateDirectory>./mustache</templateDirectory>
 							<output>${project.basedir}</output>
-							<apiPackage>indi.haorui.customized.api.service</apiPackage>
-							<modelPackage>indi.haorui.customized.api.dto</modelPackage>
+							<apiPackage>indi.haorui.template.api.service</apiPackage>
+							<modelPackage>indi.haorui.template.api.dto</modelPackage>
 							<!-- 生成一些额外的文件，比如README.md, .openapi-generator-ignore，pom.xml（会覆盖原本的）等， -->
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<configOptions>

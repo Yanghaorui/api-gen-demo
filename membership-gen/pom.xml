@@ -64,12 +64,14 @@
                             <generatorName>membership-codegen</generatorName>
                             <inputSpec>api-docs.yaml</inputSpec>
                             <output>${project.basedir}</output>
-                            <apiPackage>indi.haorui.api.service</apiPackage>
-                            <modelPackage>indi.haorui.api.dto</modelPackage>
+                            <apiPackage>indi.haorui.membershipgen.api.service</apiPackage>
+                            <modelPackage>indi.haorui.membershipgen.api.dto</modelPackage>
                             <!-- 生成一些额外的文件，比如README.md, .openapi-generator-ignore，pom.xml（会覆盖原本的）等， -->
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
                                 <library>spring-boot</library>
+                                <interfaceOnly>true</interfaceOnly>
+                                <skipDefaultInterface>true</skipDefaultInterface> <!-- 不生成接口的default方法 -->
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <skipDefaultInterface>true</skipDefaultInterface> <!-- 不生成接口的default方法 -->
@@ -83,7 +85,7 @@
                     <dependency>
                         <groupId>com.lego</groupId>
                         <artifactId>membership-codegen-openapi-generator</artifactId>
-                        <version>1.0.0</version>
+                        <version>DEV-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
             </plugin>

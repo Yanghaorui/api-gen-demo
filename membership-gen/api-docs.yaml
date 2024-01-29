@@ -53,6 +53,7 @@ paths:
       security:
       - Authorization:
         - basic-read
+        - pii-read
   /api/v1/member-card/card-number/{cardNumber}:
     get:
       tags:
@@ -146,11 +147,6 @@ components:
           - MEITUAN
   securitySchemes:
     Authorization:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: https://sts.windows.net/1d063515-6cad-4195-9486-ea65df456faa/
-          scopes:
-            basic-read: Read basic information
-            pii-read: Read personally insensitive information
-            write: write
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
