@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>indi.haorui</groupId>
-    <artifactId>standard</artifactId>
+    <artifactId>simple</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>standard</name>
-    <description>standard</description>
+    <name>simple</name>
+    <description>simple</description>
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -56,8 +56,8 @@
                             <inputSpec>api-docs.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <output>${project.basedir}</output>
-                            <apiPackage>indi.haorui.standard.api.service</apiPackage>
-                            <modelPackage>indi.haorui.standard.api.dto</modelPackage>
+                            <apiPackage>indi.haorui.simple.api.service</apiPackage>
+                            <modelPackage>indi.haorui.simple.api.dto</modelPackage>
                             <!-- 生成一些额外的文件，比如README.md，pom.xml（会覆盖原本的）等， -->
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
@@ -65,7 +65,7 @@
                                 <interfaceOnly>true</interfaceOnly>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <sourceFolder>src/main/java</sourceFolder>
-                                <skipDefaultInterface>false</skipDefaultInterface> <!-- 生成接口的default方法? -->
+                                <skipDefaultInterface>true</skipDefaultInterface> <!-- 生成接口的default方法? -->
                                 <useSpringBoot3>true</useSpringBoot3><!-- 使用jakarta包校验，默认javax -->
                                 <useTags>true</useTags> <!-- 是否通过tag 生成API 类名 -->
                             </configOptions>
